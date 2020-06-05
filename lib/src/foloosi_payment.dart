@@ -13,9 +13,9 @@ import 'package:http/http.dart' as http;
 class FoloosiPayment extends StatefulWidget {
   final String headerText;
   final String successRoute;
+  var successRouteParam;
   final ValueChanged<String> onError;
   final ValueChanged<String> onSuccess;
-  var successRouteParam;
   final String loaderText;
   final String merchantKey;
   final String secretKey;

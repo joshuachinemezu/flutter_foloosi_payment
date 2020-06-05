@@ -15,15 +15,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Foloosi Payment Flutter'),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
+  MyHomePage({Key key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -46,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: proceedToPayment
           ? null
           : AppBar(
-              title: Text(widget.title),
+              title: Text('Foloosi Payment Flutter'),
             ),
       body: proceedToPayment
           ? FoloosiPayment(
