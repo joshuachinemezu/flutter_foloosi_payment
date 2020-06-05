@@ -33,14 +33,14 @@ class FoloosiPayment extends StatefulWidget {
 
   FoloosiPayment({
     Key key,
-    this.onError,
-    this.onSuccess,
+    @required this.onError,
+    @required this.onSuccess,
     this.headerText,
     this.successRoute,
     this.successRouteParam,
     this.loaderText: "",
-    this.merchantKey,
-    this.secretKey,
+    @required this.merchantKey,
+    @required this.secretKey,
     this.referenceToken,
     this.redirectUrl,
     this.transactionAmount: 0,
