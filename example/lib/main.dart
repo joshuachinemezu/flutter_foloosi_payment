@@ -31,6 +31,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   bool proceedToPayment = false;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   void _proceeedToPayment() {
     setState(() {
@@ -40,37 +41,48 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return proceedToPayment
-        ? FoloosiPayment(
-            headerText: "Supermarket Payment",
-            successRoute: '/OrderSuccess',
-            successRouteParam: 'Foloosi',
-            loaderText: "Processing Request",
-            merchantKey: 'YOUR_MERCHANT_KEY',
-            secretKey: 'YOUR_SECRET_KEY',
-            transactionAmount: 2000,
-            currency: 'AED',
-            customerName: 'Joshua Chinemezu',
-            customerEmail: 'joshuachinemezu@gmail.com',
-            customerMobile: '+971545226635',
-            onError: (value) {
-              print("VALUE : $value");
-              setState(() {
-                proceedToPayment = false;
-              });
-            },
-      onSuccess: (value) {
-        print("VALUE : $value");
-        setState(() {
-          proceedToPayment = false;
-        });
-      },
-          )
-        : Scaffold(
-            appBar: AppBar(
+    return Scaffold(
+      key: _scaffoldKey,
+      appBar: proceedToPayment
+          ? null
+          : AppBar(
               title: Text(widget.title),
             ),
-            body: Center(
+      body: proceedToPayment
+          ? FoloosiPayment(
+              headerText: "Foloosi Payment",
+              successRoute: '/OrderSuccess',
+              successRouteParam: 'Foloosi',
+              loaderText: "Processing Request",
+              merchantKey: 'YOUR_MERCHANT_KEY',
+              secretKey: 'YOUR_SECRET_KEY',
+              transactionAmount: 2000,
+              currency: 'AED',
+              customerName: 'Joshua Chinemezu',
+              customerEmail: 'joshuachinemezu@gmail.com',
+              customerMobile: '+971500000000',
+              onError: (value) {
+                print("Payment Error : $value");
+                setState(() {
+                  proceedToPayment = false;
+                });
+                _scaffoldKey.currentState.showSnackBar(SnackBar(
+                  content: Text(value.toString()),
+                  duration: Duration(seconds: 3),
+                ));
+              },
+              onSuccess: (value) {
+                print("Payment Success : $value");
+                setState(() {
+                  proceedToPayment = false;
+                });
+                _scaffoldKey.currentState.showSnackBar(SnackBar(
+                  content: Text(value.toString()),
+                  duration: Duration(seconds: 3),
+                ));
+              },
+            )
+          : Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -83,6 +95,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-          );
+    );
   }
 }
