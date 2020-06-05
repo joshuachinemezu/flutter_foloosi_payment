@@ -55,5 +55,4 @@ class Foloosi {
     map["customer_city"] = customer_city;
     return map;
   }
-
 }

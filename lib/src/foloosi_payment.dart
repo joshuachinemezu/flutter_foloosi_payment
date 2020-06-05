@@ -143,7 +143,8 @@ class _FoloosiPaymentState extends State<FoloosiPayment> {
         name: 'Print',
         onMessageReceived: (JavascriptMessage message) {
           if (widget.debugMode) {
-            print(CustomTrace(StackTrace.current, message: message.message.toString()));
+            print(CustomTrace(StackTrace.current,
+                message: message.message.toString()));
           }
           if (message.message == "success") {
             flutterWebViewPlugin.close();
