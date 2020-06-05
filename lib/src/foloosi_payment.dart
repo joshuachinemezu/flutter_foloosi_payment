@@ -69,9 +69,13 @@ class _FoloosiPaymentState extends State<FoloosiPayment> {
     if (!widget.debugMode) {
       // TODO disable log if debug mode is false
     }
-    if (widget.referenceToken == "") {
+    if (widget.referenceToken == null) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         getReferenceToken();
+      });
+    } else {
+      setState(() {
+        processing = false;
       });
     }
   }
