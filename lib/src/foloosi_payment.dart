@@ -13,6 +13,8 @@ import 'package:http/http.dart' as http;
 class FoloosiPayment extends StatefulWidget {
   final String headerText;
   final String successRoute;
+  final ValueChanged<String> onError;
+  final ValueChanged<String> onSuccess;
   var successRouteParam;
   final String loaderText;
   final String merchantKey;
@@ -26,18 +28,21 @@ class FoloosiPayment extends StatefulWidget {
   final String customerMobile;
   final String customerAddress;
   final String customerCity;
+  final String paymentCancellationMsg;
   final bool debugMode;
 
   FoloosiPayment({
     Key key,
+    this.onError,
+    this.onSuccess,
     this.headerText,
     this.successRoute,
     this.successRouteParam,
     this.loaderText: "",
     this.merchantKey,
     this.secretKey,
-    this.referenceToken: "",
-    this.redirectUrl: "",
+    this.referenceToken,
+    this.redirectUrl,
     this.transactionAmount: 0,
     this.currency: "",
     this.customerName: "",
@@ -45,7 +50,8 @@ class FoloosiPayment extends StatefulWidget {
     this.customerMobile: "",
     this.customerAddress: "",
     this.customerCity: "",
-    this.debugMode: false,
+    this.paymentCancellationMsg: "Payment was cancelled",
+    this.debugMode: true,
   }) : super(key: key);
 
   @override
@@ -103,20 +109,28 @@ class _FoloosiPaymentState extends State<FoloosiPayment> {
     try {
       if (response.statusCode == 200) {
         decodedJSON =
-        json.decode(response.body)['data'] as Map<String, dynamic>;
+            json.decode(response.body)['data'] as Map<String, dynamic>;
 
         widget.referenceToken = decodedJSON['reference_token'];
         setState(() {
           processing = false;
         });
-        print(CustomTrace(StackTrace.current,
-            message: decodedJSON['reference_token']));
+        if (widget.debugMode) {
+          print(CustomTrace(StackTrace.current,
+              message: decodedJSON['reference_token']));
+        }
       } else {
-        print(
-            CustomTrace(StackTrace.current, message: response.body.toString()));
+        widget.onError(response.body.toString());
+        if (widget.debugMode) {
+          print(CustomTrace(StackTrace.current,
+              message: response.body.toString()));
+        }
       }
     } on FormatException catch (e) {
-      print(CustomTrace(StackTrace.current, message: e.toString()));
+      widget.onError(e.toString());
+      if (widget.debugMode) {
+        print(CustomTrace(StackTrace.current, message: e.toString()));
+      }
     }
   }
 
@@ -124,17 +138,19 @@ class _FoloosiPaymentState extends State<FoloosiPayment> {
     return JavascriptChannel(
         name: 'Print',
         onMessageReceived: (JavascriptMessage message) {
-          print(message.message);
+          if (widget.debugMode) {
+            print(CustomTrace(StackTrace.current, message: message.message.toString()));
+          }
           if (message.message == "success") {
             flutterWebViewPlugin.close();
             Navigator.of(context).pushNamed(widget.successRoute,
                 arguments: RouteArgument(param: widget.successRouteParam));
           } else if (message.message == "paymentCancelled") {
             flutterWebViewPlugin.close();
-            Navigator.pop(context);
+            widget.onError(widget.paymentCancellationMsg);
           } else {
             flutterWebViewPlugin.close();
-            Navigator.pop(context);
+            widget.onError(message.message);
           }
         });
   }
@@ -185,7 +201,7 @@ class _FoloosiPaymentState extends State<FoloosiPayment> {
                       reference_token:
                         '${widget.referenceToken}', 
                       merchant_key:
-                        '${widget.merchantKey}',
+                        '${widget.merchantKey}'
                     }
                     var fp1 = new Foloosipay(options)
                     document.addEventListener(
@@ -231,31 +247,31 @@ class _FoloosiPaymentState extends State<FoloosiPayment> {
         children: <Widget>[
           processing
               ? AnimatedOpacity(
-            opacity: processing ? 1.0 : 0.0,
-            duration: Duration(milliseconds: 5),
-            child: Container(
-              color: Colors.white,
-              child: Center(
-                child: CircularLoader(height: 200),
-              ),
-            ),
-          )
+                  opacity: processing ? 1.0 : 0.0,
+                  duration: Duration(milliseconds: 5),
+                  child: Container(
+                    color: Colors.white,
+                    child: Center(
+                      child: CircularLoader(height: 200),
+                    ),
+                  ),
+                )
               : WebviewScaffold(
-              url: url,
-              withJavascript: true,
-              javascriptChannels: <JavascriptChannel>[
-                jsChannels(context),
-              ].toSet(),
-              mediaPlaybackRequiresUserGesture: false,
-              withZoom: true,
-              withLocalStorage: true,
-              hidden: true,
-              initialChild: Container(
-                color: Colors.white,
-                child: Center(
-                  child: CircularLoader(height: 200),
-                ),
-              ))
+                  url: url,
+                  withJavascript: true,
+                  javascriptChannels: <JavascriptChannel>[
+                    jsChannels(context),
+                  ].toSet(),
+                  mediaPlaybackRequiresUserGesture: false,
+                  withZoom: true,
+                  withLocalStorage: true,
+                  hidden: true,
+                  initialChild: Container(
+                    color: Colors.white,
+                    child: Center(
+                      child: CircularLoader(height: 200),
+                    ),
+                  ))
         ],
       ),
     );
