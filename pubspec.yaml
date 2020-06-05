@@ -1,8 +1,8 @@
 name: foloosi_payment
 description: A Flutter plugin to integrate foloosi libraries for iOS and Android.
 version: 0.0.1
-author:
-homepage:
+author: Joshua Chinemezu <joshuachinemezu@gmail.com>
+homepage: https://github.com/joshuachinemezu/flutter_foloosi_payment
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

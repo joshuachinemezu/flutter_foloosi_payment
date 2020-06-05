@@ -9,7 +9,7 @@ A Flutter plugin for making payments via Foloosi Payment Gateway. Fully supports
     <table>
         <tr>
             <td style="text-align: center">
-                <img src="" width="400" />
+                <img src="./example/sample.gif" width="400" />
             </td>
         </tr>
     </table>
