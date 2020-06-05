@@ -205,7 +205,9 @@ class _FoloosiPaymentState extends State<FoloosiPayment> {
                       reference_token:
                         '${widget.referenceToken}', 
                       merchant_key:
-                        '${widget.merchantKey}'
+                        '${widget.merchantKey}',
+                      secret_key:
+                      '${widget.secretKey}'
                     }
                     var fp1 = new Foloosipay(options)
                     document.addEventListener(
