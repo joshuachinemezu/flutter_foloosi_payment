@@ -12,8 +12,6 @@ import 'package:http/http.dart' as http;
 // ignore: must_be_immutable
 class FoloosiPayment extends StatefulWidget {
   final String headerText;
-  final String successRoute;
-  var successRouteParam;
   final ValueChanged<String> onError;
   final ValueChanged<String> onSuccess;
   final String loaderText;
@@ -36,8 +34,6 @@ class FoloosiPayment extends StatefulWidget {
     @required this.onError,
     @required this.onSuccess,
     this.headerText,
-    this.successRoute,
-    this.successRouteParam,
     this.loaderText: "",
     @required this.merchantKey,
     @required this.secretKey,
@@ -148,8 +144,7 @@ class _FoloosiPaymentState extends State<FoloosiPayment> {
           }
           if (message.message == "success") {
             flutterWebViewPlugin.close();
-            Navigator.of(context).pushNamed(widget.successRoute,
-                arguments: RouteArgument(param: widget.successRouteParam));
+            widget.onSuccess(message.message);
           } else if (message.message == "paymentCancelled") {
             flutterWebViewPlugin.close();
             widget.onError(widget.paymentCancellationMsg);

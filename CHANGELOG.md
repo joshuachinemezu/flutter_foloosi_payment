@@ -5,3 +5,5 @@
 ## [0.0.2] - Format code
 
 ## [0.1.0] - Main release
+
+## [0.1.1] - Remove unused parameters

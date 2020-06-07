@@ -49,8 +49,6 @@ class _MyHomePageState extends State<MyHomePage> {
       body: proceedToPayment
           ? FoloosiPayment(
               headerText: "Foloosi Payment",
-              successRoute: '/OrderSuccess',
-              successRouteParam: 'Foloosi',
               loaderText: "Processing Request",
               merchantKey: 'YOUR_MERCHANT_KEY',
               secretKey: 'YOUR_SECRET_KEY',

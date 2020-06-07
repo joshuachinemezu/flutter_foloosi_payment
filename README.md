@@ -20,7 +20,7 @@ A Flutter plugin for making payments via Foloosi Payment Gateway. Fully supports
 In the `dependencies:` section of your `pubspec.yaml`, add the following line:
 
 ```yaml
-foloosi_payment: 0.0.1
+foloosi_payment: 0.1.1
 ```
 
 Import in your project:
@@ -110,6 +110,12 @@ bool proceedToPayment = false;
 }
 ```
 
+Note: If you're using the foloosi secret and merchant keys as a string in flutter, remember to escape the $ dollar signs
+```dart
+merchantKey: 'test_\$2y\$10\$PQ8r...',
+secretKey: 'test_\$2y\$10\$psrewC...',
+```
+
 ## Properties
 
 Here is a list of properties available:
@@ -117,8 +123,6 @@ Here is a list of properties available:
 |        Name        	    |       Type      |     Required	    |                 Description                	              |
 |:------------------:	    |:---------------:|	:---------------: |:---------------------------------------------------------:|
 | headerText         	    | String          |	    false         | the title of the widget's appbar           	              |
-| successRoute       	    | String          |	    true          | the app route to redirect the user on success             |
-| successRouteParam       | any             |     false         | the param(s) to pass to the success route                 |
 | onError           	    | Function        |	    true          | function to run on payment error              	          |
 | onSuccess         	    | Function        |	    true          | function to run on payment success            	          |
 | loaderText         	    | String          |	    false         | text to display under the loader               	          |
@@ -135,6 +139,12 @@ Here is a list of properties available:
 | customerCity            | String          |	    false         | customer city - auto render in payment popup if passed    |
 | paymentCancellationMsg  | String          |	    false         | message returned when user cancels the payment            |
 | debugMode               | bool            |	    false         | to enable or disable package logs                         |
+
+
+## TODO
+
+* Add QR code Payment.
+
 
 
 
