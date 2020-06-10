@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:foloosi_payment/src/elements/circular_loader.dart';
 import 'package:foloosi_payment/src/helpers/custom_trace.dart';
 import 'package:foloosi_payment/src/models/foloosi.dart';
-import 'package:foloosi_payment/src/models/route_argument.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:http/http.dart' as http;

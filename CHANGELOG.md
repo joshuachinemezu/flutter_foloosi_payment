@@ -7,3 +7,5 @@
 ## [0.1.0] - Main release
 
 ## [0.1.1] - Remove unused parameters
+
+## [0.1.2] - Refactor, Remove unused files and export utils

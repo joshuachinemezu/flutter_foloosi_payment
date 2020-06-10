@@ -20,7 +20,7 @@ A Flutter plugin for making payments via Foloosi Payment Gateway. Fully supports
 In the `dependencies:` section of your `pubspec.yaml`, add the following line:
 
 ```yaml
-foloosi_payment: 0.1.1
+foloosi_payment: ^0.1.2
 ```
 
 Import in your project:
@@ -110,8 +110,8 @@ bool proceedToPayment = false;
 }
 ```
 
-Note: If you're using the foloosi secret and merchant keys as a string in flutter, remember to escape the $ dollar signs
-```dart
+Note: If you're using the foloosi secret and merchant keys as a string in flutter, remember to escape the $ dollar signs although it is recommended to load these from your backend
+```markdown
 merchantKey: 'test_\$2y\$10\$PQ8r...',
 secretKey: 'test_\$2y\$10\$psrewC...',
 ```
@@ -120,25 +120,25 @@ secretKey: 'test_\$2y\$10\$psrewC...',
 
 Here is a list of properties available:
 
-|        Name        	    |       Type      |     Required	    |                 Description                	              |
+|        Name        	    |       Type      |     Required	  |                 Description                	              |
 |:------------------:	    |:---------------:|	:---------------: |:---------------------------------------------------------:|
 | headerText         	    | String          |	    false         | the title of the widget's appbar           	              |
 | onError           	    | Function        |	    true          | function to run on payment error              	          |
 | onSuccess         	    | Function        |	    true          | function to run on payment success            	          |
 | loaderText         	    | String          |	    false         | text to display under the loader               	          |
-| merchantKey             | String          |	    true          | your foloosi merchant key                      	          |
-| secretKey               | String          |	    true          | your foloosi secret key                       	          |
-| referenceToken          | String          |	    false         | the reference token - generates automatically if null     |
-| redirectUrl             | String          |	    false         | the redirect url                                          |
-| transactionAmount       | String          |	      -           | transaction amount - required if referenceToken is null   |
-| currency                | String          |	      -           | transaction currency - required if referenceToken is null |
-| customerName            | String          |	    false         | customer name - auto render in payment popup if passed    |
-| customerEmail           | String          |	    false         | customer email - auto render in payment popup if passed   |
-| customerMobile          | String          |	    false         | customer mobile - auto render in payment popup if passed  |
-| customerAddress         | String          |	    false         | customer address - auto render in payment popup if passed |
-| customerCity            | String          |	    false         | customer city - auto render in payment popup if passed    |
-| paymentCancellationMsg  | String          |	    false         | message returned when user cancels the payment            |
-| debugMode               | bool            |	    false         | to enable or disable package logs                         |
+| merchantKey               | String          |	    true          | your foloosi merchant key                      	          |
+| secretKey                 | String          |	    true          | your foloosi secret key                       	          |
+| referenceToken            | String          |	    false         | the reference token - generates automatically if null     |
+| redirectUrl               | String          |	    false         | the redirect url                                          |
+| transactionAmount         | String          |	      -           | transaction amount - required if referenceToken is null   |
+| currency                  | String          |	      -           | transaction currency - required if referenceToken is null |
+| customerName              | String          |	    false         | customer name - auto render in payment popup if passed    |
+| customerEmail             | String          |	    false         | customer email - auto render in payment popup if passed   |
+| customerMobile            | String          |	    false         | customer mobile - auto render in payment popup if passed  |
+| customerAddress           | String          |	    false         | customer address - auto render in payment popup if passed |
+| customerCity              | String          |	    false         | customer city - auto render in payment popup if passed    |
+| paymentCancellationMsg    | String          |	    false         | message returned when user cancels the payment            |
+| debugMode                 | bool            |	    false         | to enable or disable package logs                         |
 
 
 ## TODO
