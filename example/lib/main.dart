@@ -50,8 +50,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ? FoloosiPayment(
               headerText: "Foloosi Payment",
               loaderText: "Processing Request",
-              merchantKey: 'YOUR_MERCHANT_KEY',
-              secretKey: 'YOUR_SECRET_KEY',
+              merchantKey: 'YOUR_FOLOOSI_MERCHANT_KEY',
+              secretKey: 'YOUR_FOLOOSI_SECRET_KEY',
               transactionAmount: 2000,
               currency: 'AED',
               customerName: 'Joshua Chinemezu',

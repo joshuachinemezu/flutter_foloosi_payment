@@ -9,3 +9,5 @@
 ## [0.1.1] - Remove unused parameters
 
 ## [0.1.2] - Refactor, Remove unused files and export utils
+
+## [0.1.3] - Update Docs, Remove unused arguments

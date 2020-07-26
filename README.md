@@ -20,7 +20,7 @@ A Flutter plugin for making payments via Foloosi Payment Gateway. Fully supports
 In the `dependencies:` section of your `pubspec.yaml`, add the following line:
 
 ```yaml
-foloosi_payment: ^0.1.2
+foloosi_payment: ^0.1.3
 ```
 
 Import in your project:
@@ -61,9 +61,7 @@ bool proceedToPayment = false;
       body: proceedToPayment
           ? FoloosiPayment(
               headerText: 'Foloosi Payment',
-              successRoute: '/OrderSuccess',
-              successRouteParam: 'Foloosi',
-              loaderText: "Processing Request",
+              loaderText: 'Processing Request',
               merchantKey: 'YOUR_FOLOOSI_MERCHANT_KEY',
               secretKey: 'YOUR_FOLOOSI_SECRET_KEY',
               transactionAmount: 2000,
@@ -129,7 +127,6 @@ Here is a list of properties available:
 | merchantKey               | String          |	    true          | your foloosi merchant key                      	          |
 | secretKey                 | String          |	    true          | your foloosi secret key                       	          |
 | referenceToken            | String          |	    false         | the reference token - generates automatically if null     |
-| redirectUrl               | String          |	    false         | the redirect url                                          |
 | transactionAmount         | String          |	      -           | transaction amount - required if referenceToken is null   |
 | currency                  | String          |	      -           | transaction currency - required if referenceToken is null |
 | customerName              | String          |	    false         | customer name - auto render in payment popup if passed    |
@@ -144,6 +141,8 @@ Here is a list of properties available:
 ## TODO
 
 * Add QR code Payment.
+* Add Transaction List.
+* Add Transaction Details
 
 
 

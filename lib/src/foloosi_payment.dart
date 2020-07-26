@@ -17,7 +17,6 @@ class FoloosiPayment extends StatefulWidget {
   final String merchantKey;
   final String secretKey;
   String referenceToken;
-  final String redirectUrl;
   final double transactionAmount;
   final String currency;
   final String customerName;
@@ -37,7 +36,6 @@ class FoloosiPayment extends StatefulWidget {
     @required this.merchantKey,
     @required this.secretKey,
     this.referenceToken,
-    this.redirectUrl,
     this.transactionAmount: 0,
     this.currency: "",
     this.customerName: "",
