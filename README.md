@@ -24,11 +24,13 @@ foloosi_payment: ^0.1.3
 ```
 
 Import in your project:
+
 ```dart
 import 'package:foloosi_payment/foloosi_payment.dart';
 ```
 
 ## ❔Basic Usage
+
 ```dart
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key}) : super(key: key);
@@ -108,51 +110,49 @@ bool proceedToPayment = false;
 }
 ```
 
-Note: If you're using the foloosi secret and merchant keys as a string in flutter, remember to escape the $ dollar signs although it is recommended to load these from your backend
+Note: If you're using the foloosi secret and merchant keys as a string in flutter, remember to escape the \$ dollar signs although it is recommended to load these from your backend
+
 ```markdown
-merchantKey: 'test_\$2y\$10\$PQ8r...',
-secretKey: 'test_\$2y\$10\$psrewC...',
+merchantKey: 'test*\$2y\$10\$PQ8r...',
+secretKey: 'test*\$2y\$10\$psrewC...',
 ```
 
 ## Properties
 
 Here is a list of properties available:
 
-|        Name        	    |       Type      |     Required	  |                 Description                	              |
-|:------------------:	    |:---------------:|	:---------------: |:---------------------------------------------------------:|
-| headerText         	    | String          |	    false         | the title of the widget's appbar           	              |
-| onError           	    | Function        |	    true          | function to run on payment error              	          |
-| onSuccess         	    | Function        |	    true          | function to run on payment success            	          |
-| loaderText         	    | String          |	    false         | text to display under the loader               	          |
-| merchantKey               | String          |	    true          | your foloosi merchant key                      	          |
-| secretKey                 | String          |	    true          | your foloosi secret key                       	          |
-| referenceToken            | String          |	    false         | the reference token - generates automatically if null     |
-| transactionAmount         | String          |	      -           | transaction amount - required if referenceToken is null   |
-| currency                  | String          |	      -           | transaction currency - required if referenceToken is null |
-| customerName              | String          |	    false         | customer name - auto render in payment popup if passed    |
-| customerEmail             | String          |	    false         | customer email - auto render in payment popup if passed   |
-| customerMobile            | String          |	    false         | customer mobile - auto render in payment popup if passed  |
-| customerAddress           | String          |	    false         | customer address - auto render in payment popup if passed |
-| customerCity              | String          |	    false         | customer city - auto render in payment popup if passed    |
-| paymentCancellationMsg    | String          |	    false         | message returned when user cancels the payment            |
-| debugMode                 | bool            |	    false         | to enable or disable package logs                         |
-
+|          Name          |   Type   | Required |                            Description                            |
+| :--------------------: | :------: | :------: | :---------------------------------------------------------------: |
+|       headerText       |  String  |  false   |                 the title of the widget's appbar                  |
+|        onError         | Function |   true   |                 function to run on payment error                  |
+|       onSuccess        | Function |   true   |                function to run on payment success                 |
+|       loaderText       |  String  |  false   |                 text to display under the loader                  |
+|      merchantKey       |  String  |   true   |                     your foloosi merchant key                     |
+|       secretKey        |  String  |   true   |                      your foloosi secret key                      |
+|     referenceToken     |  String  |  false   |       the reference token - generates automatically if null       |
+|   transactionAmount    |  String  |    -     |      transaction amount - required if referenceToken is null      |
+|        currency        |  String  |    -     |     transaction currency - required if referenceToken is null     |
+|      customerName      |  String  |  false   |      customer name - auto render in payment popup if passed       |
+|     customerEmail      |  String  |  false   |      customer email - auto render in payment popup if passed      |
+|     customerMobile     |  String  |  false   |     customer mobile - auto render in payment popup if passed      |
+|    customerAddress     |  String  |  false   |     customer address - auto render in payment popup if passed     |
+|      customerCity      |  String  |  false   |      customer city - auto render in payment popup if passed       |
+| paymentCancellationMsg |  String  |  false   |          message returned when user cancels the payment           |
+|       debugMode        |   bool   |  false   |                 to enable or disable package logs                 |
+|    allowNavigation     |   bool   |  false   |        to allow route navigation away from payment screen         |
+|       onNavigate       | Function |    -     | callback function that is triggered when navigation is attempted. |
 
 ## TODO
 
-* Add QR code Payment.
-* Add Transaction List.
-* Add Transaction Details
-
-
-
+- Add QR code Payment.
+- Add Transaction List.
+- Add Transaction Details
 
 ## Show some :heart: and star the repo to support the project
 
- [![GitHub followers](https://img.shields.io/github/followers/joshuachinemezu.svg?style=social&label=Follow)](https://github.com/joshuachinemezu)  [![Twitter Follow](https://img.shields.io/twitter/follow/joshuachinemezu.svg?style=social)](https://twitter.com/joshuachinemezu)
+[![GitHub followers](https://img.shields.io/github/followers/joshuachinemezu.svg?style=social&label=Follow)](https://github.com/joshuachinemezu) [![Twitter Follow](https://img.shields.io/twitter/follow/joshuachinemezu.svg?style=social)](https://twitter.com/joshuachinemezu)
 
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://opensource.org/licenses/Apache-2.0)
-
 
 ## 👨 Developed with :heart: by
 
@@ -160,12 +160,10 @@ Here is a list of properties available:
 Joshua Chinemezu
 ```
 
-
 <a href="https://twitter.com/joshuachinemezu"><img src="https://user-images.githubusercontent.com/35039342/55471524-8e24cb00-5627-11e9-9389-58f3d4419153.png" width="60"></a>
 <a href="https://www.linkedin.com/in/joshuachinemezu/"><img src="https://user-images.githubusercontent.com/35039342/55471530-94b34280-5627-11e9-8c0e-6fe86a8406d6.png" width="60"></a>
 <a href="https://www.facebook.com/joshua.chinemezu"><img src="https://github.com/aritraroy/social-icons/blob/master/facebook-icon.png?raw=true" width="60"></a>
 <a href="https://medium.com/@joshuachinemezu"><img src="https://user-images.githubusercontent.com/35039342/60429733-5a9f1000-9c19-11e9-9243-54052a4e4f05.png" width="60"></a>
-
 
 # 👍 How to Contribute
 

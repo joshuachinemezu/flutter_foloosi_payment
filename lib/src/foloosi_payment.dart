@@ -25,7 +25,8 @@ class FoloosiPayment extends StatefulWidget {
   final String customerAddress;
   final String customerCity;
   final String paymentCancellationMsg;
-  final bool debugMode;
+  final bool debugMode, allowNavigation;
+  final Function onNavigate;
 
   FoloosiPayment({
     Key key,
@@ -45,6 +46,8 @@ class FoloosiPayment extends StatefulWidget {
     this.customerCity: "",
     this.paymentCancellationMsg: "Payment was cancelled",
     this.debugMode: true,
+    this.allowNavigation = false,
+    this.onNavigate,
   }) : super(key: key);
 
   @override
@@ -229,11 +232,14 @@ class _FoloosiPaymentState extends State<FoloosiPayment> {
           </html>""", mimeType: 'text/html').toString();
 
     return WillPopScope(
-      onWillPop: () async => false,
+      onWillPop: () async {
+        if (widget.onNavigate != null) widget.onNavigate();
+        return widget.allowNavigation;
+      },
       child: Scaffold(
         key: widget.key,
         appBar: AppBar(
-          automaticallyImplyLeading: false,
+          automaticallyImplyLeading: widget.allowNavigation,
           backgroundColor: Colors.white,
           elevation: 0,
           centerTitle: true,
