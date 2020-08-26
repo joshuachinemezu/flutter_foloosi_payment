@@ -228,50 +228,54 @@ class _FoloosiPaymentState extends State<FoloosiPayment> {
                 </body>
           </html>""", mimeType: 'text/html').toString();
 
-    return Scaffold(
-      key: widget.key,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: true,
-        title: Text(
-          widget.headerText,
-          style: Theme.of(context)
-              .textTheme
-              .headline6
-              .merge(TextStyle(letterSpacing: 1.3)),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        key: widget.key,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.white,
+          elevation: 0,
+          centerTitle: true,
+          title: Text(
+            widget.headerText,
+            style: Theme.of(context)
+                .textTheme
+                .headline6
+                .merge(TextStyle(letterSpacing: 1.3)),
+          ),
         ),
-      ),
-      body: Stack(
-        children: <Widget>[
-          processing
-              ? AnimatedOpacity(
-                  opacity: processing ? 1.0 : 0.0,
-                  duration: Duration(milliseconds: 5),
-                  child: Container(
-                    color: Colors.white,
-                    child: Center(
-                      child: CircularLoader(height: 200),
+        body: Stack(
+          children: <Widget>[
+            processing
+                ? AnimatedOpacity(
+                    opacity: processing ? 1.0 : 0.0,
+                    duration: Duration(milliseconds: 5),
+                    child: Container(
+                      color: Colors.white,
+                      child: Center(
+                        child: CircularLoader(height: 200),
+                      ),
                     ),
-                  ),
-                )
-              : WebviewScaffold(
-                  url: url,
-                  withJavascript: true,
-                  javascriptChannels: <JavascriptChannel>[
-                    jsChannels(context),
-                  ].toSet(),
-                  mediaPlaybackRequiresUserGesture: false,
-                  withZoom: true,
-                  withLocalStorage: true,
-                  hidden: true,
-                  initialChild: Container(
-                    color: Colors.white,
-                    child: Center(
-                      child: CircularLoader(height: 200),
-                    ),
-                  ))
-        ],
+                  )
+                : WebviewScaffold(
+                    url: url,
+                    withJavascript: true,
+                    javascriptChannels: <JavascriptChannel>[
+                      jsChannels(context),
+                    ].toSet(),
+                    mediaPlaybackRequiresUserGesture: false,
+                    withZoom: true,
+                    withLocalStorage: true,
+                    hidden: true,
+                    initialChild: Container(
+                      color: Colors.white,
+                      child: Center(
+                        child: CircularLoader(height: 200),
+                      ),
+                    ))
+          ],
+        ),
       ),
     );
   }
