@@ -77,6 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   duration: Duration(seconds: 3),
                 ));
               },
+              // allowNavigation: true,
             )
           : Center(
               child: Column(
